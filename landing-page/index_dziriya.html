@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="ar-DZ">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ADpowers Digital — نجيبلك زبائن من Facebook & Instagram (WhatsApp)</title>
+  <style>
+    :root{
+      --bg:#0B1220;
+      --text:#F7FAFF;
+      --muted:rgba(247,250,255,.74);
+      --muted2:rgba(247,250,255,.58);
+      --line:rgba(247,250,255,.12);
+      --primary:#0B5FFF; /* Blue */
+      --accent:#18B9D6;  /* cyan */
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(900px 420px at 75% -10%, rgba(11,95,255,.24), transparent 60%),
+        radial-gradient(700px 360px at 10% 0%, rgba(24,185,214,.18), transparent 55%),
+        linear-gradient(180deg, #071022, #0B1220);
+      color:var(--text);
+      direction:rtl;
+      line-height:1.65;
+    }
+
+    a{color:inherit; text-decoration:none;}
+    img{max-width:100%; display:block;}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 16px;}
+    section{padding:56px 0;}
+
+    .topbar{
+      padding:16px 0;
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background:rgba(7,16,34,.60);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbarRow{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:1000;}
+    .logo{
+      width:38px; height:38px; border-radius:14px;
+      background:linear-gradient(180deg, rgba(11,95,255,1), rgba(24,185,214,.95));
+      box-shadow:0 14px 30px rgba(11,95,255,.26);
+      display:grid; place-items:center;
+      font-weight:1000;
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      border:1px solid rgba(255,255,255,.14);
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.05);
+      color:rgba(255,255,255,.80);
+      font-weight:900;
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    .hero{padding:18px 0 0;}
+    .heroGrid{display:grid; grid-template-columns:1fr; gap:16px; align-items:start;}
+
+    .heroCard{
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .heroCard:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:radial-gradient(520px 220px at 18% 0%, rgba(11,95,255,.35), transparent 62%);
+      pointer-events:none;
+    }
+    .heroInner{position:relative; z-index:1;}
+
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(24,185,214,.14);
+      border:1px solid rgba(24,185,214,.32);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:950;
+    }
+
+    h1{
+      margin:12px 0 0;
+      font-size:30px;
+      font-weight:1100;
+      letter-spacing:-.6px;
+    }
+
+    .subhead{margin-top:12px; color:var(--muted); font-size:15.5px;}
+
+    .ctaRow{display:flex; flex-direction:column; gap:12px; margin-top:18px;}
+
+    .btn{
+      display:flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:14px 16px;
+      border-radius:16px;
+      font-weight:1000;
+      border:1px solid var(--line);
+      transition:transform .15s ease, background .15s ease;
+      text-align:center;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px);}
+
+    .btnPrimary{
+      background:linear-gradient(180deg, rgba(11,95,255,1), rgba(11,95,255,.88));
+      border-color:rgba(11,95,255,.55);
+      box-shadow:0 16px 35px rgba(11,95,255,.25);
+    }
+
+    .btnSecondary{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(255,255,255,.14);
+    }
+
+    .micro{margin-top:10px; color:var(--muted2); font-size:13px; font-weight:750;}
+
+    .trustRow{margin-top:16px; display:grid; grid-template-columns:1fr; gap:12px;}
+    .trustItem{
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(0,0,0,.14);
+      border-radius:16px;
+      padding:14px;
+    }
+    .trustItem b{display:block; font-size:14.2px; margin-bottom:4px;}
+    .trustItem span{color:var(--muted); font-size:13.5px;}
+
+    .sectionTitle{
+      font-size:22px;
+      font-weight:1100;
+      letter-spacing:-.3px;
+    }
+    .sectionLead{margin-top:10px; color:var(--muted); font-size:15.5px;}
+
+    .cards4{margin-top:18px; display:grid; grid-template-columns:1fr; gap:14px;}
+    .split{display:grid; grid-template-columns:1fr; gap:16px; margin-top:18px;}
+    .grid2{display:grid; grid-template-columns:1fr; gap:16px; margin-top:18px;}
+
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      padding:16px;
+    }
+
+    .cardTop{display:flex; gap:12px; align-items:flex-start;}
+    .ico{
+      width:44px; height:44px;
+      border-radius:16px;
+      background:rgba(11,95,255,.14);
+      border:1px solid rgba(11,95,255,.28);
+      display:grid; place-items:center;
+      flex:0 0 auto;
+      font-size:18px;
+    }
+
+    .card h3{margin:0; font-size:16px; font-weight:1000;}
+    .card p{margin:8px 0 0; color:var(--muted); font-size:14.5px;}
+
+    .steps{margin-top:18px; display:grid; grid-template-columns:1fr; gap:14px;}
+    .stepCard{position:relative; overflow:hidden;}
+    .stepNum{
+      position:absolute; top:14px; left:14px;
+      width:36px; height:36px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      font-weight:1100;
+      background:rgba(24,185,214,.15);
+      border:1px solid rgba(24,185,214,.30);
+    }
+    .stepCardInner{padding-top:44px;}
+
+    .quote{margin:0; color:var(--text); font-size:14.8px;}
+    .quote span{color:var(--muted);}
+
+    .resultsRow{margin-top:14px; display:grid; grid-template-columns:1fr; gap:12px;}
+    .resultBox{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:14px;
+    }
+    .resultBox b{display:block; font-size:16px;}
+    .resultBox small{color:var(--muted); font-size:13.5px;}
+
+    .beforeAfter{margin-top:16px; display:grid; grid-template-columns:1fr; gap:12px;}
+    .ba{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.10);
+      border-radius:16px;
+      padding:14px;
+      color:#fff;
+    }
+    .ba h3{font-size:14px; margin:0;}
+    .ba ul{margin:10px 0 0; padding:0; list-style:none;}
+    .ba li{margin:8px 0; color:var(--muted); font-size:14px;}
+    .ba li:before{content:"✓"; color:var(--accent); margin-left:10px; font-weight:1100;}
+
+    .offerGrid{margin-top:18px; display:grid; grid-template-columns:1fr; gap:14px;}
+    .hr{height:1px; background:rgba(255,255,255,.12); margin:16px 0;}
+
+    .faq{margin-top:18px; display:grid; grid-template-columns:1fr; gap:12px;}
+    details{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:16px;
+      padding:12px 14px;
+    }
+    summary{cursor:pointer; font-weight:1100; color:#fff; list-style:none;}
+    summary::-webkit-details-marker{display:none;}
+    details p{margin:10px 0 0; color:var(--muted); font-size:14.5px;}
+
+    .finalCta{
+      border-radius:var(--radius2);
+      border:1px solid rgba(11,95,255,.55);
+      background:linear-gradient(180deg, rgba(11,95,255,.18), rgba(255,255,255,.03));
+      padding:18px;
+      box-shadow:0 22px 55px rgba(0,0,0,.25);
+      position:relative;
+      overflow:hidden;
+    }
+    .finalCta:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:radial-gradient(540px 220px at 85% 0%, rgba(24,185,214,.35), transparent 60%);
+      pointer-events:none;
+    }
+    .finalInner{position:relative; z-index:1;}
+
+    footer{padding:26px 0 40px; color:rgba(255,255,255,.58); font-size:13px;}
+
+    @media (min-width: 860px){
+      h1{font-size:42px;}
+      .heroGrid{grid-template-columns:1.2fr .8fr; gap:18px;}
+      .ctaRow{flex-direction:row;}
+      .ctaRow .btn{flex:1;}
+      .trustRow{grid-template-columns:1fr;}
+      .cards4{grid-template-columns:repeat(2, 1fr);} 
+      .split{grid-template-columns:1fr 1fr;}
+      .grid2{grid-template-columns:1fr 1fr;}
+      .steps{grid-template-columns:repeat(3, 1fr);} 
+      .resultsRow{grid-template-columns:repeat(3, 1fr);} 
+      .beforeAfter{grid-template-columns:1fr 1fr;} 
+      .offerGrid{grid-template-columns:1.2fr .8fr;} 
+      .faq{grid-template-columns:1fr 1fr;} 
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbarRow">
+<div class="brand">
+          <div class="logo">A</div>
+          ADpowers Digital
+        </div>
+        <div class="pill">🎯 نجيبولك كلاين حقيقيين على WhatsApp</div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div class="heroCard">
+            <div class="heroInner">
+              <div class="badge">⚡ OBJECTIVE: نجيبلك زبائن… و نكبّرو المداخيل تاعك</div>
+              <h1>نجيبلك زبائن مهتمّين بدل ما تهدر على Facebook & Instagram Ads؟</h1>
+<div class="subhead">في <b>ADpowers Digital</b> نعاونك تدير نظام إعلاني مدروس يجيك <b>رسائل واتساب</b> من أصحاب بْزنس في الجزائر… مش views ولا كلام فارغ.</div>
+
+              <div class="ctaRow" role="group" aria-label="CTA">
+                <a class="btn btnPrimary" href="https://wa.me/213XXXXXXXXX?text=سلام%20أنا%20عندي%20بيزنس%20وحاب%20نجيب%20زبائن%20جدد" target="_blank" rel="noopener">
+                  <span aria-hidden="true">📲</span>
+                  إبعثنا في واتساب
+                </a>
+                <a class="btn btnSecondary" href="#offer">
+                  <span aria-hidden="true">✅</span>
+                  احجز استشارة مجانية
+                </a>
+              </div>
+
+              <div class="micro">⏳ spots محدودة: غير مع عدد صغير من المشاريع باش نخدمو مليح و نتابعو كل أسبوع.</div>
+
+              <div class="trustRow">
+                <div class="trustItem">
+                  <b>🎯 ما نبيعوش إعلانات… نبيعوا leads اللي يديرو خطوة</b>
+                  <span>هدفنا: تواصل واتساب → اهتمام → طلب/مكالمة.</span>
+                </div>
+                <div class="trustItem">
+                  <b>📈 تحليل + استراتيجية + تنفيذ + تحسين</b>
+                  <span>مش تجربة عشوائية… نكبّرو اللي ينجح ونوقفو اللي يهدر فلوس.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SIDE -->
+          <div class="heroCard" style="padding:16px;">
+            <div class="heroInner">
+              <div class="sectionTitle" style="font-size:18px;">باه نساعدك بسرعة؟</div>
+              <div class="sectionLead" style="font-size:14.5px;">إذا خدمتك فيها عرض تقدر تقدملو ردّ تاع واتساب… نقدروا نبدأو.</div>
+
+              <div class="grid2">
+                <div class="card">
+                  <div class="cardTop">
+                    <div class="ico">🛍️</div>
+                    <div>
+                      <h3>متجر / ecommerce</h3>
+                      <p>طلبات و اهتمام تاع واتساب.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="cardTop">
+                    <div class="ico">🏥</div>
+                    <div>
+                      <h3>عيادة / كلينيك</h3>
+                      <p>حجز مواعيد واستفسارات.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="cardTop">
+                    <div class="ico">🏘️</div>
+                    <div>
+                      <h3>عقار</h3>
+                      <p>زبائن يسولوا بجدّية.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="cardTop">
+                    <div class="ico">🧾</div>
+                    <div>
+                      <h3>خدمات</h3>
+                      <p>leads مهتمين في منطقتك.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hr"></div>
+              <div class="micro" style="margin-top:0;">نردّو عليك في واتساب + نطرحوا 3 أسئلة باش نحددولك واش يناسب مشروعك.</div>
+
+              <div class="ctaRow" style="margin-top:14px;">
+                <a class="btn btnPrimary" href="https://wa.me/213XXXXXXXXX?text=سلام%20أنا%20عندي%20بيزنس%20وحاب%20نجيب%20زبائن%20جدد" target="_blank" rel="noopener">
+                  <span aria-hidden="true">⚡</span>
+                  نبدأو مع بعض
+                </a>
+              </div>
+              <div class="micro">ملاحظة: ما نقدرش نجاوب الكل… خاطر نخدمو بجودة.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section>
+      <div class="wrap">
+        <div class="sectionTitle">تصرف دراهم بلا نتيجة؟</div>
+        <div class="sectionLead">هذي أكثر المشاكل اللي تقتل المداخيل تاع بزنس بزاف في الجزائر:</div>
+
+        <div class="cards4">
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">💸</div>
+              <div>
+                <h3>تصرف فلوس في ads… ومكاش زبائن</h3>
+                <p>تسيفط ميزانية… وما يجيكش contact جدي.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">😕</div>
+              <div>
+                <h3>ماعندكش leads مهتمّين</h3>
+                <p>ناس تفرج وتعدّي… وماشي زبائن.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🧩</div>
+              <div>
+                <h3>ما عندكش خبرة في الإعلانات</h3>
+                <p>كل مرة تجرب… بلا استراتيجية وبلا تحسين.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">⏳</div>
+              <div>
+                <h3>تضيّع الوقت في التعديل العشوائي</h3>
+                <p>تبدّل حاجة هنا و هناك… وما تتحكمش في النتيجة.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section>
+      <div class="wrap">
+        <div class="sectionTitle">نظام كامل لجلب العملاء (مش مجرد حملة)</div>
+        <div class="sectionLead">نفهمو البيزنس تاعك → نركّبو الاستراتيجية → نطبّقو → نحسّنو على القياس.</div>
+
+        <div class="split">
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🔍</div>
+              <div>
+                <h3>تحليل + تشخيص</h3>
+                <p>نحددو واش يخدم مع عرضك، جمهورك، ومنين يجيك الطلب.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🎯</div>
+              <div>
+                <h3>استراتيجية على مقاسك</h3>
+                <p>رسالة واضحة + هدف واضح: واتساب و conversion.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🚀</div>
+              <div>
+                <h3>تنفيذ محترف</h3>
+                <p>إعلانات + ربط بالواتساب + متابعة سريعة.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🔁</div>
+              <div>
+                <h3>تحسين مستمر</h3>
+                <p>نقيسو شكون يتفاعل و نبدلو اللي لازم باش ما تهدرش فلوس.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctaRow" style="margin-top:18px;">
+          <a class="btn btnPrimary" href="https://wa.me/213XXXXXXXXX?text=سلام%20أنا%20عندي%20بيزنس%20وحاب%20نجيب%20زبائن%20جدد" target="_blank" rel="noopener">
+            <span aria-hidden="true">📲</span>
+            ابعث و خذ تشخيص مجاني
+          </a>
+          <a class="btn btnSecondary" href="#how">
+            <span aria-hidden="true">🧭</span>
+            كيفاش تمشي الخطوات؟
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section>
+      <div class="wrap">
+        <div class="sectionTitle">وش يربحك معانا؟</div>
+        <div class="sectionLead">موش views… زبائن و فلوس في الحقيقه:</div>
+
+        <div class="cards4">
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🤝</div>
+              <div>
+                <h3>زبائن مهتمّين</h3>
+                <p>ناس تجاوب وتطلب… مش غير مشاهدة.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">📉</div>
+              <div>
+                <h3>تخفيض تكلفة الإعلان (CPL)</h3>
+                <p>نقصّو الهدر ونخليو الميزانية تخدم مع leads مهتمين.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">📊</div>
+              <div>
+                <h3>نتائج قابلة للقياس</h3>
+                <p>تقارير بسيطة: واش دار نتيجه؟ و علاش؟</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">⏱️</div>
+              <div>
+                <h3>توفير الوقت</h3>
+                <p>أنت تركّز على الخدمة… حنا نديرو الإعلانات والتحسين.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how">
+      <div class="wrap">
+        <div class="sectionTitle">3 خطوات وباش تولّي الأمور تمشي</div>
+        <div class="sectionLead">بلا تعقيد، وبلا دراما:</div>
+
+        <div class="steps">
+          <div class="card stepCard">
+            <div class="stepNum">1</div>
+            <div class="stepCardInner">
+              <div class="cardTop">
+                <div class="ico">🧩</div>
+                <div>
+                  <h3>نفهمو البيزنس تاعك</h3>
+                  <p>هدفك؟ عرضك؟ جمهورك؟ ومنين تبدا الجدية.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card stepCard">
+            <div class="stepNum">2</div>
+            <div class="stepCardInner">
+              <div class="cardTop">
+                <div class="ico">📣</div>
+                <div>
+                  <h3>نطلقو الحملات</h3>
+                  <p>إعلانات Facebook & Instagram + ربط بالواتساب.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card stepCard">
+            <div class="stepNum">3</div>
+            <div class="stepCardInner">
+              <div class="cardTop">
+                <div class="ico">📈</div>
+                <div>
+                  <h3>نحسنو النتائج</h3>
+                  <p>تحسين أسبوعي باش تزيد leads اللي يديرو خطوة.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ctaRow" style="margin-top:18px;">
+          <a class="btn btnPrimary" href="https://wa.me/213XXXXXXXXX?text=سلام%20أنا%20عندي%20بيزنس%20وحاب%20نجيب%20زبائن%20جدد" target="_blank" rel="noopener">
+            <span aria-hidden="true">⚡</span>
+            نبدأو وخلاص
+          </a>
+          <a class="btn btnSecondary" href="#faq">أسئلة؟ شوف FAQ</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY US -->
+    <section>
+      <div class="wrap">
+<div class="sectionTitle">علاش تختار ADpowers Digital؟</div>
+        <div class="sectionLead">باش ما تضيّعش وقتك و فلوسك:</div>
+
+        <div class="cards4">
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🇩🇿</div>
+              <div>
+                <h3>خبرة في السوق الجزائري</h3>
+                <p>نعرفو واش يخدم هنا وكيفاش نكتبوا ونستهدفوا.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🧠</div>
+              <div>
+                <h3>فاهمين الكلاين</h3>
+                <p>نربطو الإعلانات بالنية تاع الزبون… مش بالهاءة.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🛠️</div>
+              <div>
+                <h3>خدمة مخصصة</h3>
+                <p>مش template. نحطّو سيستم على حساب مشروعك.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🎯</div>
+              <div>
+                <h3>نركّزو على النتائج</h3>
+                <p>هدفنا: واتسابات مهتمة و مبيعات.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section>
+      <div class="wrap">
+        <div class="sectionTitle">دير بالك… النتائج تجي كي النظام يكون صح</div>
+        <div class="sectionLead">أرقام تقريبية من واقع العمل (ممكن تختلف حسب القطاع):</div>
+
+        <div class="grid2">
+          <div class="card">
+بعد ما بدينا مع ADpowers Digital شفت <b>+100 leads</b> و زادت استفسارات واتساب. 
+          </div>
+          <div class="card">
+            <p class="quote">“هبطت تكلفة lead، والناس اللي تجي تسول على سعر/موعد. أخيرا فهمت واش راهي تخدم الحملة.” <span>— صالون/خدمات، الجزائر العاصمة</span></p>
+          </div>
+          <div class="card">
+            <p class="quote">“قبل كنا نجربو وخلاص. معانا تولي كاين تحليل + تحسين أسبوعي. واتساب راهو يدير خدمة.” <span>— عيادة، وهران</span></p>
+          </div>
+          <div class="card">
+            <p class="quote">“التواصل ولاّ أسهل: الناس تحوس واتساب. الخدمة مخصصة وماكانش الكلام الفارغ.” <span>— وكالة عقارية، البليدة</span></p>
+          </div>
+        </div>
+
+        <div class="resultsRow">
+          <div class="resultBox"><b>+100 leads</b><small>خلال حملات التجربة (حسب القطاع والميزانية)</small></div>
+          <div class="resultBox"><b>انخفاض CPL</b><small>بسبب تحسين الرسائل والاستهداف</small></div>
+          <div class="resultBox"><b>تحسين أسبوعي</b><small>مش وعود… متابعة على القياس</small></div>
+        </div>
+
+        <div class="beforeAfter">
+          <div class="ba">
+            <h3>قبل</h3>
+            <ul>
+              <li>زبائن قليلين</li>
+              <li>إعلانات مكلفة بلا طعم</li>
+              <li>ماكاش تحويل واضح للواتساب</li>
+            </ul>
+          </div>
+          <div class="ba">
+            <h3>بعد</h3>
+            <ul>
+              <li>رسائل واتساب مهتمة</li>
+              <li>تكلفة أقل على كل lead</li>
+              <li>سيستام يكبر معاك</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER -->
+    <section id="offer">
+      <div class="wrap">
+        <div class="sectionTitle">نعاونك تجيب زبائن خلال 30 يوم</div>
+        <div class="sectionLead">وبطريقة تقلل الخطر عليك: نثبتلك الخطة بدّاية، ومن بعد نحسّنو.</div>
+
+        <div class="offerGrid">
+          <div class="card">
+            <div class="cardTop">
+              <div class="ico">🗓️</div>
+              <div>
+                <h3>خلال 30 يوم: نظام leads على واتساب</h3>
+                <p>تحليل + استراتيجية + تنفيذ + تحسين. باش تزيد الجودة وتولي الحملة تخدم.</p>
+              </div>
+            </div>
+
+            <div class="hr"></div>
+            <div class="micro" style="margin-top:0;">🎯 كيفاش نضمن الجودة؟ إذا ما شفناش مؤشرات إيجابية في أول فترة (7-10 أيام) نراجعوا الخطة ونبدلو الضروري باش ما تكمّليش في طريق غلط.</div>
+
+            <div class="hr"></div>
+            <div class="micro" style="margin-top:0;">عدد محدود من المشاريع باش نتابعو كل week.</div>
+          </div>
+
+          <div class="card" style="border-color:rgba(24,185,214,.40); background:rgba(24,185,214,.10);">
+            <div class="sectionTitle" style="font-size:18px;">استشارة مجانية</div>
+            <div class="sectionLead" style="font-size:14.5px; margin-top:8px;">في واتساب: نقولك واش يصلح مشروعك + كيفاش نبدأو.</div>
+
+            <div class="ctaRow" style="margin-top:14px;">
+              <a class="btn btnPrimary" href="https://wa.me/213XXXXXXXXX?text=سلام%20أنا%20عندي%20بيزنس%20وحاب%20نجيب%20زبائن%20جدد" target="_blank" rel="noopener">
+                <span aria-hidden="true">✅</span>
+                نطلب الاستشارة
+              </a>
+              <a class="btn btnSecondary" href="#faq">قرا FAQ</a>
+            </div>
+
+            <div class="micro">⚡ نجاوب بسرعة وخايفين نضيع وقتك.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <div class="wrap">
+<div class="sectionTitle" id="faq">أسئلة شائعة</div>
+        <div class="sectionLead">قصيرة وبلا لفّ ودوران:</div>
+
+        <div class="faq">
+          <details>
+            <summary>السعر كيفاه؟</summary>
+            <p>يتحسب حسب نوع البيزنس والهدف والميزانية. أول حاجة: نحددوا الهدف تاعك ونخرجوا بخطة واضحة في الاستشارة.</p>
+          </details>
+
+          <details>
+            <summary>قدّاه نحتاج وقت؟</summary>
+            <p>في 7-10 أيام لازم تبان مؤشرات (ردود/تفاعل واتساب). ومن بعد خلال 30 يوم نكبروا اللي يخدم.</p>
+          </details>
+
+          <details>
+            <summary>هل يصلح لأي مشروع؟</summary>
+            <p>إذا عندك عرض يقدر ينفع و تقدر ترد على واتساب، غالبًا نعم. في الاستشارة نقولك واش يناسبك أكثر.</p>
+          </details>
+
+          <details>
+            <summary>كيف يتم التواصل؟</summary>
+            <p>كل حاجة تصرا عبر WhatsApp: تساؤلات + متابعة + شروحات بسيطة باش تكون الصورة واضحة.</p>
+          </details>
+
+          <details>
+            <summary>وش يديرو في الواقع؟</summary>
+            <p>نركبو الحملة، نديرو الرسائل، نربطوها بالواتساب، ونحسّنو أسبوعيًا باش تزيد جودة leads.</p>
+          </details>
+
+          <details>
+            <summary>هل راكم تقدروا تزيدوني بزاف؟</summary>
+            <p>نركزو على الجودة: leads مهتمّين و تحويل واضح. ما نبيعوش “أرقام فارغة”.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section>
+      <div class="wrap">
+        <div class="finalCta">
+          <div class="finalInner">
+            <div class="badge">⏳ آخر spots هاذ الشهر…</div>
+            <div class="sectionTitle" style="margin-top:12px;">حاب تبدّل النتائج؟ خليك معانا 30 يوم</div>
+            <div class="sectionLead">ابعث “سلام” في واتساب ونبدأو بخطة مناسبة لمشروعك.</div>
+
+            <div class="ctaRow" style="margin-top:16px;">
+              <a class="btn btnPrimary" href="https://wa.me/213XXXXXXXXX?text=سلام%20أنا%20عندي%20بيزنس%20وحاب%20نجيب%20زبائن%20جدد" target="_blank" rel="noopener">
+                <span aria-hidden="true">📲</span>
+                تواصل الآن في واتساب
+              </a>
+              <a class="btn btnSecondary" href="#offer">استشارة مجانية</a>
+            </div>
+
+            <div class="micro">⚡ ردّ سريع + أسئلة بسيطة + بداية واضحة.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+<div>© <span id="y"></span> ADpowers Digital — Algeria</div>
+        <div style="margin-top:8px;">ملاحظة: الأرقام تتبدّل حسب القطاع والميزانية، بصح النظام والهدف (واتساب زبائن) ثابت.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
